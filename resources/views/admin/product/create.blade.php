@@ -143,7 +143,10 @@
                             <label>Seo Description</label>
                             <textarea name="seo_description" class="form-control"></textarea>
                         </div>
-
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="number" class="form-control" name="pincode" value="">
+                        </div>
                         <div class="form-group">
                             <label for="inputState">Status</label>
                             <select id="inputState" class="form-control" name="status">

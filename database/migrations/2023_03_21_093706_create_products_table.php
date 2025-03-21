@@ -27,6 +27,7 @@ return new class extends Migration
             $table->text('video_link')->nullable();
             $table->string('sku')->nullable();
             $table->double('price');
+            $table->integer('pincode');
             $table->double('offer_price')->nullable();
             $table->date('offer_start_date')->nullable();
             $table->date('offer_end_date')->nullable();
@@ -39,6 +40,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

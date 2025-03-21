@@ -154,7 +154,11 @@
                             <label>Seo Description</label>
                             <textarea name="seo_description" class="form-control">{!!$product->seo_description!!}</textarea>
                         </div>
-
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text" class="form-control" name="pincode" value="{{$product->pincode}}">
+                        </div>
+                       
                         <div class="form-group">
                             <label for="inputState">Status</label>
                             <select id="inputState" class="form-control" name="status">

@@ -14,14 +14,31 @@
         <div class="row flash_sell_slider">
 
             @php
-                $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
-                    ->with(['variants', 'category', 'productImageGalleries'])->whereIn('id', $flashSaleItems)->get();
+                $pincode = session('pincode');
+        
+                $products = \App\Models\Product::withAvg('reviews', 'rating')
+                    ->withCount('reviews')
+                    ->with(['variants', 'category', 'productImageGalleries'])
+                    ->whereIn('id', $flashSaleItems)
+                    ->when($pincode, function ($query) use ($pincode) {
+                        return $query->where('pincode', $pincode); 
+                    })
+                    ->get();
             @endphp
-            @foreach ($products as $product)
-                <x-product-card :product="$product" />
-            @endforeach
-
+        
+            @if ($products->count() > 0)
+                @foreach ($products as $product)
+                    <x-product-card :product="$product" />
+                @endforeach
+            @else
+                <div class="col-12 text-center">
+                    <h4>No Products Found for Pincode: {{ $pincode }}</h4>
+                </div>
+            @endif
+        
         </div>
+        
+        
     </div>
 </section>
 

@@ -16,7 +16,8 @@ use App\Models\SubCategory;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Str;
+use Illuminate\Support\Str;
+
 
 class ProductController extends Controller
 {
@@ -53,8 +54,9 @@ class ProductController extends Controller
             'qty' => ['required'],
             'short_description' => ['required', 'max: 600'],
             'long_description' => ['required'],
-            'seo_title' => ['nullable','max:200'],
-            'seo_description' => ['nullable','max:250'],
+            'pincode' => ['required', 'max:6'],
+            'seo_title' => ['nullable', 'max:200'],
+            'seo_description' => ['nullable', 'max:250'],
             'status' => ['required']
         ]);
 
@@ -76,6 +78,7 @@ class ProductController extends Controller
         $product->video_link = $request->video_link;
         $product->sku = $request->sku;
         $product->price = $request->price;
+        $product->pincode = $request->pincode;
         $product->offer_price = $request->offer_price;
         $product->offer_start_date = $request->offer_start_date;
         $product->offer_end_date = $request->offer_end_date;
@@ -89,7 +92,6 @@ class ProductController extends Controller
         toastr('Created Successfully!', 'success');
 
         return redirect()->route('admin.products.index');
-
     }
 
     /**
@@ -127,8 +129,9 @@ class ProductController extends Controller
             'qty' => ['required'],
             'short_description' => ['required', 'max: 600'],
             'long_description' => ['required'],
-            'seo_title' => ['nullable','max:200'],
-            'seo_description' => ['nullable','max:250'],
+            'pincode' => ['required', 'max:6'],
+            'seo_title' => ['nullable', 'max:200'],
+            'seo_description' => ['nullable', 'max:250'],
             'status' => ['required']
         ]);
 
@@ -150,6 +153,7 @@ class ProductController extends Controller
         $product->video_link = $request->video_link;
         $product->sku = $request->sku;
         $product->price = $request->price;
+        $product->pincode = $request->pincode;
         $product->offer_price = $request->offer_price;
         $product->offer_start_date = $request->offer_start_date;
         $product->offer_end_date = $request->offer_end_date;
@@ -162,7 +166,6 @@ class ProductController extends Controller
         toastr('Updated Successfully!', 'success');
 
         return redirect()->route('admin.products.index');
-
     }
 
     /**
@@ -171,7 +174,7 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);
-        if(OrderProduct::where('product_id',$product->id)->count() > 0){
+        if (OrderProduct::where('product_id', $product->id)->count() > 0) {
             return response(['status' => 'error', 'message' => 'This product have orders can\'t delete it.']);
         }
 
@@ -180,7 +183,7 @@ class ProductController extends Controller
 
         /** Delete product gallery images */
         $galleryImages = ProductImageGallery::where('product_id', $product->id)->get();
-        foreach($galleryImages as $image){
+        foreach ($galleryImages as $image) {
             $this->deleteImage($image->image);
             $image->delete();
         }
@@ -188,7 +191,7 @@ class ProductController extends Controller
         /** Delete product variants if exist */
         $variants = ProductVariant::where('product_id', $product->id)->get();
 
-        foreach($variants as $variant){
+        foreach ($variants as $variant) {
             $variant->productVariantItems()->delete();
             $variant->delete();
         }
@@ -224,5 +227,4 @@ class ProductController extends Controller
 
         return $childCategories;
     }
-
 }

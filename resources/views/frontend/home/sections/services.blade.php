@@ -1,32 +1,57 @@
 <section id="wsus__home_services" class="home_service_2">
+    <h1 style="text-align: center;margin-bottom:70px">Why [Company Name]</h1>
     <div class="container">
-        <div class="row">
-            <div class="col-xl-3 col-sm-6 col-lg-3 pe-lg-0">
-                <div class="wsus__home_services_single home_service_single_2 border_left">
-                    <i class="fal fa-truck"></i>
-                    <h5>Free Worldwide Shipping</h5>
-                    <p>Free shipping coast for all country</p>
+        <div class="row justify-content-center text-center">
+            <div class="col-md-2">
+                <div style="position: relative;">
+                    <div style="width: 120px; height: 120px; background-color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: auto; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
+                        <img src="{{ asset('frontend/images/icons8-fish-100.png') }}" alt="Fresh Delivery" style="width: 80px;">
+                    </div>
+                    <p style="margin-top: 15px; font-weight: bold;">Sourced From Origin</p>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6 col-lg-3 pe-lg-0">
-                <div class="wsus__home_services_single home_service_single_2">
-                    <i class="fal fa-headset"></i>
-                    <h5>24/7 Customer Support</h5>
-                    <p>Friendly 24/7 customer support</p>
+            
+           
+
+            <div class="col-md-2">
+                <div style="position: relative;">
+                    <div style="width: 120px; height: 120px; background-color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: auto; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
+                        <img src="{{ asset('frontend/images/icons8-fish-100.png') }}" alt="Fresh Delivery" style="width: 80px;">
+                    </div>
+                    <p style="margin-top: 15px; font-weight: bold;">Scientific Production Unit</p>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6 col-lg-3 pe-lg-0">
-                <div class="wsus__home_services_single home_service_single_2">
-                    <i class="far fa-exchange-alt"></i>
-                    <h5>Money Back Guarantee</h5>
-                    <p>We return money within 30 days</p>
+
+           
+
+            <div class="col-md-2">
+                <div style="position: relative;">
+                    <div style="width: 120px; height: 120px; background-color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: auto; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
+                        <img src="{{ asset('frontend/images/icons8-fish-100.png') }}" alt="Fresh Delivery" style="width: 80px;">
+                    </div>
+                    <p style="margin-top: 15px; font-weight: bold;">Quality Control</p>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6 col-lg-3">
-                <div class="wsus__home_services_single home_service_single_2">
-                    <i class="fal fa-credit-card"></i>
-                    <h5>Secure Online Payment</h5>
-                    <p>We posess SSL / Secure Certificate</p>
+
+           
+
+            <div class="col-md-2">
+                <div style="position: relative;">
+                    <div style="width: 120px; height: 120px; background-color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: auto; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
+                        <img src="{{ asset('frontend/images/icons8-fish-100.png') }}" alt="Fresh Delivery" style="width: 80px;">
+                    </div>
+                    <p style="margin-top: 15px; font-weight: bold;">Fresh Delivery</p>
+                </div>
+            </div>
+
+           
+
+            <div class="col-md-2">
+                <div style="position: relative;">
+                    <div style="width: 120px; height: 120px; background-color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: auto; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
+                        <img src="{{ asset('frontend/images/icons8-fish-100.png') }}" alt="Fresh Delivery" style="width: 80px;">
+                    </div>
+                    <p style="margin-top: 15px; font-weight: bold;">Deliciously Cooked</p>
                 </div>
             </div>
         </div>

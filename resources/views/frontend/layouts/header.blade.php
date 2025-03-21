@@ -1,3 +1,15 @@
+<div style="display: flex; align-items: center;">
+    <img src="{{ asset('frontend/images/map.png') }}" alt="" height="20px" width="20px">
+    <span style="font-size: 12px; margin-left: 5px;">{{ session('pincode') }}</span>
+
+    <form action="{{ route('pincode.reset') }}" method="POST" style="margin-left: 10px;">
+        @csrf
+        <button type="submit" style="border: none; background: transparent;">
+            <img src="{{ asset('frontend/images/pen.png') }}" alt="" height="20px" width="20px" style="cursor: pointer">
+        </button>
+    </form>
+</div>
+
 
 <header>
     <div class="container">
@@ -7,6 +19,7 @@
                     <span class="wsus__mobile_menu_icon"><i class="fal fa-bars"></i></span>
                 </div>
             </div>
+           
             <div class="col-xl-2 col-7 col-md-8 col-lg-2">
                 <div class="wsus_logo_area">
                     <a class="wsus__header_logo" href="{{url('/')}}">
@@ -28,10 +41,12 @@
                         <div class="wsus__call">
                             <i class="fas fa-user-headset"></i>
                         </div>
+                        
                         <div class="wsus__call_text">
                             <p>{{$settings->contact_email}}</p>
                             <p>{{$settings->contact_phone}}</p>
                         </div>
+                     
                     </div>
                     <ul class="wsus__icon_area">
                         <li><a href="{{route('user.wishlist.index')}}"><i class="fal fa-heart"></i><span id="wishlist_count">

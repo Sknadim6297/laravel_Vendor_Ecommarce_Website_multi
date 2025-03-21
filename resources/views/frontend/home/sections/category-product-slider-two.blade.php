@@ -1,6 +1,7 @@
 @php
     $categoryProductSliderSectionTwo = json_decode($categoryProductSliderSectionTwo->value);
     $lastKey = [];
+    $pincode=session('pincode');
 
     foreach($categoryProductSliderSectionTwo as $key => $category){
         if($category === null ){
@@ -13,18 +14,27 @@
         $category = \App\Models\Category::find($lastKey['category']);
         $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
         ->with(['variants', 'category', 'productImageGalleries'])
-        ->where('category_id', $category->id)->orderBy('id', 'DESC')->take(12)->get();
+        ->where('category_id', $category->id)
+        ->when($pincode, function ($query) use ($pincode) {
+            return $query->where('pincode', $pincode);
+        }) ->orderBy('id', 'DESC')->take(12)->get();
     }elseif(array_keys($lastKey)[0] === 'sub_category'){
         $category = \App\Models\SubCategory::find($lastKey['sub_category']);
         $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
         ->with(['variants', 'category', 'productImageGalleries'])
-        ->where('sub_category_id', $category->id)->orderBy('id', 'DESC')->take(12)->get();
-
+        ->where('sub_category_id', $category->id)->when($pincode, function ($query) use ($pincode) {
+            return $query->where('pincode', $pincode); 
+        })->
+        orderBy('id', 'DESC')->take(12)->get();
     }else {
         $category = \App\Models\ChildCategory::find($lastKey['child_category']);
         $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
         ->with(['variants', 'category', 'productImageGalleries'])
-        ->where('child_category_id', $category->id)->orderBy('id', 'DESC')->take(12)->get();
+        ->where('child_category_id', $category->id)->
+        when($pincode, function ($query) use ($pincode) {
+            return $query->where('pincode', $pincode); 
+        })->
+        orderBy('id', 'DESC')->take(12)->get();
     }
 @endphp
 <section id="wsus__electronic">

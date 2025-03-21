@@ -20,6 +20,7 @@ use App\Http\Controllers\Frontend\UserMessageController;
 use App\Http\Controllers\Frontend\UserOrderController;
 use App\Http\Controllers\Frontend\UserVendorReqeustController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\PincodeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/reset-pincode', [PincodeController::class, 'resetPincode'])->name('pincode.reset');
+Route::get('/choose-pincode', [PincodeController::class, 'showPincodeForm'])->name('pincode.prompt');
+Route::post('/save-pincode', [PincodeController::class, 'savePincode'])->name('pincode.save');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
@@ -44,7 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flash-sale');
 
@@ -103,7 +107,7 @@ Route::get('wishlist/add-product', [WishlistController::class, 'addToWishlist'])
 
 
 
-Route::group(['middleware' =>['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function(){
+Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [UserProfileController::class, 'index'])->name('profile'); // user.profile
     Route::put('profile', [UserProfileController::class, 'updateProfile'])->name('profile.update'); // user.profile.update

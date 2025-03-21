@@ -9,6 +9,7 @@
                 @php
 
                     $lastKey = [];
+                    $pincode = session('pincode');
 
                     foreach ($sliderSectionThree as $key => $category) {
                         if ($category === null) {
@@ -21,6 +22,9 @@
                         $category = \App\Models\Category::find($lastKey['category']);
                         $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
                         ->where('category_id', $category->id)
+                        ->when($pincode, function ($query) use ($pincode) {
+                            return $query->where('pincode', $pincode);
+                        })
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
@@ -28,6 +32,9 @@
                         $category = \App\Models\SubCategory::find($lastKey['sub_category']);
                         $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
                         ->where('sub_category_id', $category->id)
+                        ->when($pincode, function ($query) use ($pincode) {
+                            return $query->where('pincode', $pincode);
+                        })
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
@@ -35,6 +42,9 @@
                         $category = \App\Models\ChildCategory::find($lastKey['child_category']);
                         $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
                         ->where('child_category_id', $category->id)
+                        ->when($pincode, function ($query) use ($pincode) {
+                            return $query->where('pincode', $pincode);
+                        })
                             ->orderBy('id', 'DESC')
                             ->take(6)
                             ->get();
